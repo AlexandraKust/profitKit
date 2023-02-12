@@ -1,0 +1,463 @@
+// обнуляющие стили
+@import "nullstyle";
+
+// шрифт
+@font-face {
+	font-family: 'Rubik';
+	src: url('../fonts/Rubik-Regular.woff2') format('woff2'),
+		 url('../fonts/Rubik-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Rubik';
+	src: url('../fonts/Rubik-Medium.woff2') format('woff2'),
+		 url('../fonts/Rubik-Medium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Rubik';
+	src: url('../fonts/Rubik-Bold.woff2') format('woff2'),
+		 url('../fonts/Rubik-Bold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+// цвет
+:root {
+	--color-red: #DB3737;
+	--color-blue: #5697D3;
+	--color-yellow: #F1D264;
+	--color-gray-1: #535658;
+	--color-gray-2: #8D9295;
+	--color-gray-3: #ECF0F4;
+	--color-gray-4: #4C4E50;
+}
+
+.svg-sprite {
+	display: none;
+}
+
+.section-offset {
+	padding: 80px 0;
+
+	@media (max-width: 992px) {
+		padding: 40px 0;
+	}
+}
+
+// стрелки слайдеров
+.swiper-arrow-prev, .swiper-arrow-next {
+	width: 40px;
+	height: 40px;
+	border: 1px solid var(--color-gray-3);
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition-property: background;
+	transition: 0.4s ease-in-out;
+
+	&:active path {
+		stroke: #fff;
+	}
+
+	&:hover {
+		cursor: pointer;
+		background: var(--color-gray-3);
+	}
+}
+
+// описание стилей
+body {
+	font-family: 'Rubik', sans-serif;
+}
+
+.container {
+	max-width: 1440px;
+	margin: 0 auto;
+	padding: 0 20px;
+
+	@media (max-width: 992px) {
+		overflow: hidden;
+	}
+}
+
+.popular {
+	min-width: 320px;
+	background: #fff;
+	overflow: hidden;
+
+	&__tabs {
+		display: flex;
+		align-items: center;
+		gap: 25px;
+		margin-bottom: 40px;
+	}
+
+	&__tabs-item {
+		flex-shrink: 0;
+	}
+
+	&__tab {
+		font-weight: 400;
+		font-size: 24px;
+		line-height: 34px;				
+		color: var(--color-gray-1);
+		text-align: left;
+		border-bottom: 1px dotted var(--color-gray-1);
+		background: none;
+		transition-property: color, border-color;
+		transition: 0.4s;
+
+		&:hover {
+			cursor: pointer;
+			color: var(--color-gray-2);
+			border-color: var(--color-gray-2);
+		}
+
+		&.active {
+			font-weight: 700;
+			font-size: 34px;
+			line-height: 40px;
+			text-transform: uppercase;
+			color: #000;
+			border-bottom: none;
+		}
+	}
+
+	&__content-item {
+		display: none;
+		position: relative;
+
+		&.active {
+			display: block;
+		}
+	}
+
+	&__arrow-prev {
+		position: absolute;
+		z-index: 10;
+		top: 50%;
+		left: -46px;
+		transform: translate(-100%, -50%);
+	}
+
+	&__arrow-next {
+		position: absolute;
+		z-index: 10;
+		top: 50%;
+		right: -46px;
+		transform: translateY(-50%) translateX(100%);
+	}
+
+
+	@media (max-width: 992px) {
+		&__tabs {
+			flex-direction: column;
+			align-items: start;
+			gap: 6px;
+			margin-bottom: 25px;
+		}
+		&__tab {
+			font-size: 14px;
+			line-height: 22px;					
+	
+			&.active {
+				font-size: 18px;
+				line-height: 26px;
+			}
+		}
+		&__arrow-next, &__arrow-prev {
+			display: none;
+		}
+		&__swiper {
+			overflow: visible;
+		}
+	}
+}
+
+// карточка товара
+.pop-slide {
+	width: 334px;
+	background: #FFF;
+	border: 1px solid var(--color-gray-3);
+	border-radius: 5px;
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	height: auto;
+
+	&__type {
+		position: absolute;
+		top: 20px;
+		left: 20px;
+		z-index: 5;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	&__type-item {
+		width: 50px;
+		height: 50px;
+		svg {width: 100%;}
+	}
+
+	&__add {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		z-index: 5;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 5px;
+	}
+
+	&__add-item {
+		width: 34px;
+		height: 34px;
+		flex-shrink: 0;
+		flex-grow: 0;
+		background: #fff;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		left: 2px;
+		transition-property: background;
+		transition: 0.4s ease-in-out;
+
+		svg {
+			width: 20px;
+			height: 20px;
+			fill: none;
+			stroke: #000;
+		}
+
+		&:hover {
+			cursor: pointer;
+			background: var(--color-gray-3);
+		}
+	}
+
+	&__add-like svg {
+		stroke: 2px;
+	}
+
+	&__add-like.active svg {
+		fill: var(--color-red);
+		stroke: transparent;
+	}
+
+	&__add-compare svg {
+		stroke: 1.5px;
+	}
+
+	&__add-compare.active {
+		background: var(--color-gray-3);
+		svg {
+			stroke: var(--color-yellow);
+		}
+	}
+
+	&__content {
+		padding: 10px 25px 25px;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+
+	&__title {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 20px;
+		text-align: center;		
+		color: #000;
+		margin-bottom: 5px;
+		flex: 1 1 auto;
+		cursor: default;
+	}
+
+	&__price {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		margin-bottom: 10px;
+		text-align: center;
+		cursor: default;
+	}
+
+	&__price-default {
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 22px;
+		text-transform: uppercase;
+		color: #000;
+	}
+
+	&__price-old {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 22px;		
+		text-decoration-line: line-through;
+		text-transform: uppercase;		
+		color: var(--color-gray-2);
+	}
+
+	&__btns {
+		display: flex;
+		gap: 10px;
+	}
+
+	&__count {
+		background: #fff;		
+		border: 1px solid var(--color-gray-3);
+		border-radius: 5px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex: 0 0 100px;
+	}
+
+	&__btn-minus, &__btn-plus {
+		height: 100%;
+		width: 35px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: none;
+		transition-property: background;
+		transition: 0.4s ease-in-out;
+
+		&:hover {
+			background: var(--color-gray-3);
+		}
+	}
+
+	&__amount {
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 21px;		
+		color: var(--color-gray-4);
+		text-align: center;
+	}
+
+	&__btn-basket {
+		flex: 1 1 auto;
+		background: var(--color-yellow);
+		border-radius: 5px;
+		padding: 17px 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 17px;
+		color: #000;
+		transition-property: background;
+		transition: 0.4s ease-in-out;
+
+		svg {
+			width: 21px;
+			height: 18px;
+		}
+
+		&:hover {
+			background: rgba($color: #F1D264 , $alpha: 0.7);
+		}
+	}
+
+	@media (max-width: 992px) {
+		width: 260px;
+
+		&__content {
+			padding: 10px 20px 20px;
+		}
+
+		&__title {
+			font-size: 16px;
+			line-height: 22px;
+			margin-bottom: 15px;
+		}
+
+		&__price {
+			gap: 16px;
+			margin-bottom: 20px;
+		}
+
+		&__count {
+			display: none;
+		}
+	}
+}
+
+// слайдер изображений внутри карточки товара
+.img-slider {
+	width: 100%;
+	flex-shrink: 0;
+	height: 67.1%;
+
+	&__slide {
+		background: url('../media/img/pop-item-none.png') 0 0 / cover no-repeat;
+		height: 100%;
+		img {
+			max-width: 100%;
+			height: 100%;
+		}
+	}
+
+	&__pagination {
+		position: absolute;
+		z-index: 5;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 4px;
+		bottom: 14px !important;		
+	}
+	&__bullets {
+		position: relative;
+		display: block;
+		width: 20px;
+		height: 2px;
+		background: rgba(0, 0, 0, 0.2);
+		margin: 0;
+
+		&.active {
+			background: var(--color-yellow);
+		}
+		&:hover {
+			cursor: pointer;
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: 60px;
+			bottom: -20px;
+			left: 0;
+		}
+	}
+
+	@media (max-width: 992px) {
+		height: 59%;
+
+		&__pagination {
+			display: none;
+		}
+	}
+}
